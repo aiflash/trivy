@@ -52,7 +52,7 @@ require (
 	github.com/hashicorp/go-getter v1.7.0
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/hashicorp/golang-lru/v2 v2.0.1
-	github.com/in-toto/in-toto-golang v0.7.0
+	github.com/in-toto/in-toto-golang v0.9.0
 	github.com/knqyf263/go-apk-version v0.0.0-20200609155635-041fdbb8563f
 	github.com/knqyf263/go-deb-version v0.0.0-20230223133812-3ed183d23422
 	github.com/knqyf263/go-rpm-version v0.0.0-20220614171824-631e686d1075
@@ -77,13 +77,13 @@ require (
 	github.com/package-url/packageurl-go v0.1.1-0.20220428063043-89078438f170
 	github.com/samber/lo v1.37.0
 	github.com/saracen/walker v0.1.3
-	github.com/secure-systems-lab/go-securesystemslib v0.5.0
+	github.com/secure-systems-lab/go-securesystemslib v0.6.0
 	github.com/sigstore/rekor v1.1.0
 	github.com/sirupsen/logrus v1.9.0
 	github.com/sosedoff/gitkit v0.3.0
 	github.com/spdx/tools-golang v0.5.0
 	github.com/spf13/cast v1.5.0
-	github.com/spf13/cobra v1.6.1
+	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.8.2
@@ -354,7 +354,7 @@ require (
 	go.uber.org/multierr v1.9.0 // indirect
 	golang.org/x/net v0.9.0 // indirect
 	golang.org/x/oauth2 v0.6.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.7.0 // indirect
 	google.golang.org/api v0.114.0 // indirect
