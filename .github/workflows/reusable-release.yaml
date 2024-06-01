@@ -27,7 +27,7 @@ jobs:
       contents: read  # Not required for public repositories, but for clarity
     steps:
       - name: Cosign install
-        uses: sigstore/cosign-installer@c3667d99424e7e6047999fb6246c0da843953c65
+        uses: sigstore/cosign-installer@b49ef6b125b98c2708965eeb167d89e86aa73ef6
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
