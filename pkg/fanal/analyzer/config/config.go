@@ -9,13 +9,14 @@ import (
 	"k8s.io/utils/strings/slices"
 
 	"github.com/aquasecurity/trivy/pkg/fanal/analyzer"
+	"github.com/aquasecurity/trivy/pkg/iac/detection"
 	"github.com/aquasecurity/trivy/pkg/misconf"
 )
 
 var (
 	_ analyzer.PostAnalyzer = (*Analyzer)(nil)
 
-	requiredExts = []string{".json", ".yaml", ".yml"}
+	requiredExts = []string{".json", ".yaml", ".yml", ".tfvars"}
 )
 
 // Analyzer represents an analyzer for config files,
@@ -26,10 +27,8 @@ type Analyzer struct {
 	scanner *misconf.Scanner
 }
 
-type NewScanner func([]string, misconf.ScannerOption) (*misconf.Scanner, error)
-
-func NewAnalyzer(t analyzer.Type, version int, newScanner NewScanner, opts analyzer.AnalyzerOptions) (*Analyzer, error) {
-	s, err := newScanner(opts.FilePatterns, opts.MisconfScannerOption)
+func NewAnalyzer(t analyzer.Type, version int, fileType detection.FileType, opts analyzer.AnalyzerOptions) (*Analyzer, error) {
+	s, err := misconf.NewScanner(fileType, opts.MisconfScannerOption)
 	if err != nil {
 		return nil, xerrors.Errorf("%s scanner init error: %w", t, err)
 	}

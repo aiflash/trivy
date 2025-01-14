@@ -12,6 +12,7 @@ import (
 
 	"github.com/aquasecurity/trivy/pkg/fanal/types"
 	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/aquasecurity/trivy/pkg/set"
 )
 
 var (
@@ -25,7 +26,7 @@ func initGoogleClassifier() error {
 	// This loading is expensive and should be called only when the license classification is needed.
 	var err error
 	classifierOnce.Do(func() {
-		log.Logger.Debug("Loading the default license classifier...")
+		log.Debug("Loading the default license classifier...")
 		cf, err = assets.DefaultClassifier()
 	})
 	return err
@@ -43,7 +44,7 @@ func Classify(filePath string, r io.Reader, confidenceLevel float64) (*types.Lic
 
 	var findings types.LicenseFindings
 	var matchType types.LicenseType
-	seen := map[string]struct{}{}
+	seen := set.New[string]()
 
 	// cf.Match is not thread safe
 	m.Lock()
@@ -57,11 +58,11 @@ func Classify(filePath string, r io.Reader, confidenceLevel float64) (*types.Lic
 		if match.Confidence <= confidenceLevel {
 			continue
 		}
-		if _, ok := seen[match.Name]; ok {
+		if seen.Contains(match.Name) {
 			continue
 		}
 
-		seen[match.Name] = struct{}{}
+		seen.Append(match.Name)
 
 		switch match.MatchType {
 		case "Header":
